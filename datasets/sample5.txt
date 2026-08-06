@@ -1,0 +1,4 @@
+CryptoLabX will grow throughout the semester.
+Future modules may contain encryption and decryption algorithms.
+The toolkit may also include attacks and mathematical utilities.
+Each laboratory assignment will add new functionality.

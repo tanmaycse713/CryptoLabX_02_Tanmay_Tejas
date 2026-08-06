@@ -1,0 +1,4 @@
+Classical cryptography includes many historical techniques.
+Substitution ciphers replace symbols with other symbols.
+Transposition techniques rearrange the positions of characters.
+Cryptanalysis attempts to understand and attack such systems.

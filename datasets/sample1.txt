@@ -1,0 +1,4 @@
+Cryptography is the study of secure communication.
+It helps protect information from unauthorized access.
+CryptoLabX is a toolkit for learning cryptography and cryptanalysis.
+This is the first sample dataset for our laboratory.

@@ -1,0 +1,4 @@
+Computer security is important in the modern world.
+Millions of messages are transmitted across networks every day.
+Encryption can help protect sensitive information.
+Students can study these techniques using practical experiments.
