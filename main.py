@@ -1,5 +1,7 @@
 from collections import Counter
+from datetime import datetime
 import os
+
 
 def analyze_file():
     print("\n===== Dataset File Analysis =====")
@@ -50,7 +52,7 @@ def main():
     while True:
         show_menu()
         choice = input("\nEnter your choice: ")
-
+        write_log(choice)
         if choice == "1":
             print("\nEncrypt\nComing Soon")
 
@@ -69,6 +71,23 @@ def main():
 
         else:
             print("\nInvalid choice! Please select 1, 2, 3, 4 or 5.")
+
+
+def write_log(choice):
+    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    menu = {
+        "1": "Encrypt",
+        "2": "Decrypt",
+        "3": "Attack",
+        "4": "Analyze",
+        "5": "Exit"
+    }
+
+    option = menu.get(choice, "Invalid Choice")
+
+    with open("log.txt", "a") as logfile:
+        logfile.write(f"{current_time} | {option}\n")
 
 
 if __name__ == "__main__":
