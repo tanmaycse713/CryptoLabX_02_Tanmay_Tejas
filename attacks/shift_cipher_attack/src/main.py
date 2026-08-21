@@ -8,23 +8,54 @@ from brute_force_dictionary import (
 from chi_square_attack import chi_square_attack
 
 
+def get_dictionary_result(result):
+    if isinstance(result, dict):
+        key = result.get("key")
+        plaintext = result.get("plaintext", "")
+        score = result.get("score", 0)
+        return key, plaintext, score
+
+    if isinstance(result, (tuple, list)):
+        if len(result) >= 3:
+            return result[0], result[1], result[2]
+
+        if len(result) == 2:
+            return result[0], result[1], 0
+
+        if len(result) == 1:
+            return result[0], "", 0
+
+    return None, str(result), 0
+
+
+def get_chi_result(result):
+    if isinstance(result, dict):
+        key = result.get("key")
+        plaintext = result.get("plaintext", "")
+        score = result.get("score", 0)
+        return key, plaintext, score
+
+    if isinstance(result, (tuple, list)):
+        if len(result) >= 3:
+            return result[0], result[1], result[2]
+
+        if len(result) == 2:
+            return result[0], result[1], 0
+
+        if len(result) == 1:
+            return result[0], "", 0
+
+    return None, str(result), 0
+
+
 def main():
 
     print("=" * 70)
     print("SHIFT CIPHER CRYPTANALYSIS")
     print("=" * 70)
 
-    # --------------------------------------------------
-    # Original plaintext and key
-    # --------------------------------------------------
-
     plaintext = "THIS IS A SECRET MESSAGE"
-
     actual_key = 5
-
-    # --------------------------------------------------
-    # Encrypt
-    # --------------------------------------------------
 
     ciphertext = shift_encrypt(
         plaintext,
@@ -39,10 +70,6 @@ def main():
 
     print("\nCiphertext:")
     print(ciphertext)
-
-    # --------------------------------------------------
-    # Load dictionary
-    # --------------------------------------------------
 
     base_dir = os.path.dirname(
         os.path.dirname(
@@ -60,10 +87,6 @@ def main():
         dictionary_file
     )
 
-    # --------------------------------------------------
-    # Dictionary Attack
-    # --------------------------------------------------
-
     print("\n")
     print("=" * 70)
     print("DICTIONARY SCORING ATTACK")
@@ -74,19 +97,26 @@ def main():
         dictionary
     )
 
+    dictionary_best_key = None
+    dictionary_best_plaintext = ""
+    dictionary_best_score = float("-inf")
+
     for result in dictionary_results:
 
-        print(
-            f"Key: {result['key']:2d} | "
-            f"Score: {result['score']:2d} | "
-            f"{result['plaintext']}"
+        key, candidate_plaintext, score = get_dictionary_result(
+            result
         )
 
-    dictionary_key = dictionary_results[0]["key"]
+        print(
+            f"Key: {str(key):>2} | "
+            f"Score: {score:>5} | "
+            f"{candidate_plaintext}"
+        )
 
-    # --------------------------------------------------
-    # Chi-Square Attack
-    # --------------------------------------------------
+        if score > dictionary_best_score:
+            dictionary_best_score = score
+            dictionary_best_key = key
+            dictionary_best_plaintext = candidate_plaintext
 
     print("\n")
     print("=" * 70)
@@ -97,19 +127,26 @@ def main():
         ciphertext
     )
 
+    chi_best_key = None
+    chi_best_plaintext = ""
+    chi_best_score = float("inf")
+
     for result in chi_results:
 
-        print(
-            f"Key: {result['key']:2d} | "
-            f"Score: {result['score']:.4f} | "
-            f"{result['plaintext']}"
+        key, candidate_plaintext, score = get_chi_result(
+            result
         )
 
-    chi_square_key = chi_results[0]["key"]
+        print(
+            f"Key: {str(key):>2} | "
+            f"Score: {score:>10.4f} | "
+            f"{candidate_plaintext}"
+        )
 
-    # --------------------------------------------------
-    # Final Comparison
-    # --------------------------------------------------
+        if score < chi_best_score:
+            chi_best_score = score
+            chi_best_key = key
+            chi_best_plaintext = candidate_plaintext
 
     print("\n")
     print("=" * 70)
@@ -121,21 +158,39 @@ def main():
     )
 
     print(
-        f"Dictionary Key      : {dictionary_key}"
+        f"Dictionary Key      : {dictionary_best_key}"
     )
 
     print(
-        f"Chi-Square Key      : {chi_square_key}"
+        f"Dictionary Plaintext: {dictionary_best_plaintext}"
+    )
+
+    print(
+        f"Dictionary Score    : {dictionary_best_score}"
     )
 
     print(
         f"Dictionary Correct? : "
-        f"{dictionary_key == actual_key}"
+        f"{dictionary_best_key == actual_key}"
+    )
+
+    print()
+
+    print(
+        f"Chi-Square Key      : {chi_best_key}"
+    )
+
+    print(
+        f"Chi-Square Plaintext: {chi_best_plaintext}"
+    )
+
+    print(
+        f"Chi-Square Score    : {chi_best_score:.4f}"
     )
 
     print(
         f"Chi-Square Correct? : "
-        f"{chi_square_key == actual_key}"
+        f"{chi_best_key == actual_key}"
     )
 
 
