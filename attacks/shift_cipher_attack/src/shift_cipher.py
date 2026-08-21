@@ -3,10 +3,8 @@ def shift_encrypt(text, key):
 
     for char in text:
         if char.isalpha():
-            if char.isupper():
-                result += chr((ord(char) - ord('A') + key) % 26 + ord('A'))
-            else:
-                result += chr((ord(char) - ord('a') + key) % 26 + ord('a'))
+            base = ord('A') if char.isupper() else ord('a')
+            result += chr((ord(char) - base + key) % 26 + base)
         else:
             result += char
 
@@ -14,18 +12,17 @@ def shift_encrypt(text, key):
 
 
 def shift_decrypt(text, key):
-
     return shift_encrypt(text, -key)
 
 
-if __name__ == "__main__":
-    plaintext = "HELLO WORLD"
-    key = 3
+# Test
+plaintext = "HELLO WORLD"
+key = 3
 
-    ciphertext = shift_encrypt(plaintext, key)
-    decrypted = shift_decrypt(ciphertext, key)
+ciphertext = shift_encrypt(plaintext, key)
+decrypted = shift_decrypt(ciphertext, key)
 
-    print("Plaintext :", plaintext)
-    print("Key       :", key)
-    print("Ciphertext:", ciphertext)
-    print("Decrypted :", decrypted)
+print("Plaintext :", plaintext)
+print("Key       :", key)
+print("Ciphertext:", ciphertext)
+print("Decrypted :", decrypted)
