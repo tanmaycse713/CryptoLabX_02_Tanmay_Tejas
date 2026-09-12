@@ -44,10 +44,10 @@ bool verify_solution(
 int main()
 {
     ifstream plaintextFile(
-        "../../../datasets/plaintext.txt");
+        "datasets/plaintext.txt");
 
     ifstream ciphertextFile(
-        "../../../outputs/ciphertext.txt");
+        "outputs/ciphertext.txt");
 
     if (!plaintextFile)
     {
