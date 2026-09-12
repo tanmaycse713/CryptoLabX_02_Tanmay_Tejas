@@ -43,7 +43,7 @@ void display_partial_plaintext(
 
 int main()
 {
-    ifstream input("outputs/ciphertext.txt");
+    ifstream input("../../../outputs/ciphertext.txt");
 
     if (!input)
     {

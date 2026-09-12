@@ -51,7 +51,7 @@ int main()
             encryptionKey);
 
     ofstream output(
-        "outputs/ciphertext.txt");
+        "../../../outputs/ciphertext.txt");
 
     if (!output)
     {

@@ -63,7 +63,7 @@ void frequency_analysis(const string &text)
 
 int main()
 {
-    ifstream input("outputs/ciphertext.txt");
+    ifstream input("../../../outputs/ciphertext.txt");
 
     if (!input)
     {

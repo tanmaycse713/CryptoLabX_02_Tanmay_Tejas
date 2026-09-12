@@ -18,9 +18,7 @@ string apply_substitution(const string &text, const string &key)
             char upper = toupper(c);
             char replacement = key[upper - 'A'];
 
-            if (replacement == '?')
-                result[i] = '?';
-            else if (islower(c))
+            if (islower(c))
                 result[i] = tolower(replacement);
             else
                 result[i] = replacement;
@@ -32,38 +30,41 @@ string apply_substitution(const string &text, const string &key)
 
 int main()
 {
-    ifstream input("outputs/ciphertext.txt");
+    ifstream input("/mnt/c/Users/Tejas/Desktop/crypto/CryptoLabX_GroupTT/datasets/plaintext.txt");
 
     if (!input)
     {
-        cout << "Error opening ciphertext.txt\n";
+        cout << "Error opening plaintext.txt\n";
         return 1;
     }
 
-    string ciphertext;
+    string plaintext;
     string line;
 
     while (getline(input, line))
     {
-        ciphertext += line;
-        ciphertext += '\n';
+        plaintext += line;
+        plaintext += '\n';
     }
 
     input.close();
 
-    string key(26, '?');
+    string key = "QWERTYUIOPASDFGHJKLZXCVBNM";
 
-    key['Q' - 'A'] = 'E';
-    key['X' - 'A'] = 'T';
+    string ciphertext = apply_substitution(plaintext, key);
 
-    string result =
-        apply_substitution(ciphertext, key);
+    ofstream output("/mnt/c/Users/Tejas/Desktop/crypto/CryptoLabX_GroupTT/outputs/ciphertext.txt");
 
-    cout << "CIPHERTEXT:\n";
-    cout << ciphertext << "\n";
+    if (!output)
+    {
+        cout << "Error creating ciphertext.txt\n";
+        return 1;
+    }
 
-    cout << "PARTIAL PLAINTEXT:\n";
-    cout << result << "\n";
+    output << ciphertext;
+    output.close();
+
+    cout << "Ciphertext generated successfully.\n";
 
     return 0;
 }
