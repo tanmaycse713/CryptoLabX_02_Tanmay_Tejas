@@ -30,7 +30,7 @@ string apply_substitution(const string &text, const string &key)
 
 int main()
 {
-    ifstream input("/mnt/c/Users/Tejas/Desktop/crypto/CryptoLabX_GroupTT/datasets/plaintext.txt");
+    ifstream input("datasets/plaintext.txt");
 
     if (!input)
     {
@@ -51,9 +51,10 @@ int main()
 
     string key = "QWERTYUIOPASDFGHJKLZXCVBNM";
 
-    string ciphertext = apply_substitution(plaintext, key);
+    string ciphertext =
+        apply_substitution(plaintext, key);
 
-    ofstream output("/mnt/c/Users/Tejas/Desktop/crypto/CryptoLabX_GroupTT/outputs/ciphertext.txt");
+    ofstream output("outputs/ciphertext.txt");
 
     if (!output)
     {
