@@ -207,8 +207,8 @@ bool verify(const string& original, const string& reencrypted) {
 }
 
 int main(){
-const string INPUT_FILE = "../datasets/ciphertext.txt";
-    const string OUTPUT_FILE = "../outputs/output.txt";
+    const string INPUT_FILE = "../../datasets/ciphertext.txt";
+    const string OUTPUT_FILE = "../../outputs/output.txt";
     const int GROUP_NUMBER = 11;
 
     ifstream fin(INPUT_FILE);

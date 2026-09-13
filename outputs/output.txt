@@ -1,0 +1,149 @@
+VIGENERE CRYPTANALYSIS - KASISKI EXAMINATION + FREQUENCY ANALYSIS
+Group Number: 11
+Ciphertext length after preprocessing: 758
+
+KASISKI ANALYSIS
+Repeated patterns (length 3-5):
+  AEL : positions 297 619 | distances 322 
+  AEP : positions 356 524 | distances 168 
+  AIK : positions 93 393 | distances 300 
+  AMF : positions 573 579 | distances 6 
+  BEL : positions 199 247 | distances 48 
+  DDE : positions 557 701 | distances 144 
+  DFW : positions 389 569 | distances 180 
+  DFWT : positions 389 569 | distances 180 
+  DFWTA : positions 389 569 | distances 180 
+  EGX : positions 20 140 | distances 120 
+  ELS : positions 44 728 | distances 684 
+  FBE : positions 198 246 | distances 48 
+  FBEL : positions 198 246 | distances 48 
+  FWT : positions 390 570 | distances 180 
+  FWTA : positions 390 570 | distances 180 
+  GOT : positions 263 419 | distances 156 
+  GOTP : positions 263 419 | distances 156 
+  GOTPM : positions 263 419 | distances 156 
+  GPX : positions 109 385 | distances 276 
+  GWI : positions 281 509 | distances 228 
+  GWIE : positions 281 509 | distances 228 
+  GWW : positions 514 553 | distances 39 
+  HPR : positions 195 243 | distances 48 
+  HPRF : positions 195 243 | distances 48 
+  HPRFB : positions 195 243 | distances 48 
+  HXZ : positions 333 717 | distances 384 
+  HXZY : positions 333 717 | distances 384 
+  HZL : positions 687 745 | distances 58 
+  IEG : positions 62 283 | distances 221 
+  ILA : positions 173 629 | distances 456 
+  ILB : positions 10 226 | distances 216 
+  KHP : positions 194 242 | distances 48 
+  KHPR : positions 194 242 | distances 48 
+  KHPRF : positions 194 242 | distances 48 
+  KIL : positions 9 225 | distances 216 
+  KILB : positions 9 225 | distances 216 
+  KMA : positions 534 594 | distances 60 
+  LAE : positions 174 618 | distances 444 
+  LBN : positions 227 647 | distances 420 
+  LBR : positions 11 278 | distances 267 
+  LFM : positions 137 149 | distances 12 
+  LVB : positions 168 408 | distances 240 
+  MAE : positions 355 523 | distances 168 
+  MAEP : positions 355 523 | distances 168 
+  MEL : positions 43 486 | distances 443 
+  MFS : positions 52 364 | distances 312 
+  MHX : positions 31 151 | distances 120 
+  MLW : positions 189 477 561 | distances 288 84 
+  MXR : positions 267 423 | distances 156 
+  MXRT : positions 267 423 | distances 156 
+  MXRTX : positions 267 423 | distances 156 
+  NNB : positions 396 649 | distances 253 
+  NUM : positions 120 300 | distances 180 
+  NVW : positions 217 253 349 457 | distances 36 96 108 
+  OTP : positions 264 420 | distances 156 
+  OTPM : positions 264 420 | distances 156 
+  OTPMX : positions 264 420 | distances 156 
+  PMX : positions 266 422 | distances 156 
+  PMXR : positions 266 422 | distances 156 
+  PMXRT : positions 266 422 | distances 156 
+  PRF : positions 196 244 | distances 48 
+  PRFB : positions 196 244 | distances 48 
+  PRFBE : positions 196 244 | distances 48 
+  RFB : positions 197 245 | distances 48 
+  RFBE : positions 197 245 | distances 48 
+  RFBEL : positions 197 245 | distances 48 
+  RTX : positions 269 425 | distances 156 
+  RXW : positions 68 677 | distances 609 
+  SIL : positions 172 628 | distances 456 
+  SILA : positions 172 628 | distances 456 
+  SML : positions 476 730 | distances 254 
+  TAI : positions 92 392 | distances 300 
+  TAIK : positions 92 392 | distances 300 
+  THX : positions 332 428 | distances 96 
+  TPM : positions 265 421 | distances 156 
+  TPMX : positions 265 421 | distances 156 
+  TPMXR : positions 265 421 | distances 156 
+  TXT : positions 378 405 426 | distances 27 21 
+  UAL : positions 276 444 612 | distances 168 168 
+  WHG : positions 287 383 | distances 96 
+  WIE : positions 282 510 | distances 228 
+  WNV : positions 134 722 | distances 588 
+  WTA : positions 391 571 | distances 180 
+  WWS : positions 40 554 | distances 514 
+  XRT : positions 268 424 | distances 156 
+  XRTX : positions 268 424 | distances 156 
+  XTH : positions 331 427 | distances 96 
+  XTHX : positions 331 427 | distances 96 
+  XZY : positions 334 718 | distances 384 
+  YGW : positions 433 508 | distances 75 
+  YNV : positions 252 456 | distances 204 
+  YNVW : positions 252 456 | distances 204 
+
+Factor frequency (2-20):
+  2 -> 88
+  3 -> 90
+  4 -> 83
+  5 -> 16
+  6 -> 84
+  7 -> 11
+  8 -> 40
+  9 -> 16
+  10 -> 15
+  11 -> 1
+  12 -> 83
+  13 -> 21
+  14 -> 9
+  15 -> 16
+  16 -> 26
+  17 -> 3
+  18 -> 15
+  19 -> 7
+  20 -> 15
+
+Estimated key length: 12
+
+INDEX OF COINCIDENCE
+Whole ciphertext IC: 0.04376
+Average IC for key length 12: 0.07172
+
+FREQUENCY TABLES FOR EACH GROUP
+Group  Size  A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 
+    1   64   1  4  1  0  0  3  2  3  6  1  0  4  2  4  3  1  1  0  1  0  6  0  4  3 13  1 
+    2   64   8  2  3  0  4  2  6  1  0  0  0  0  0 10  1  1  1  8  2  3  4  3  0  0  3  2 
+    3   63   3  8  1  1  1  0  2  0  4  0  6  5  6  1  1  4  2  0  0  1  1  5  5  0  0  6 
+    4   63   2  6  0  0  2  0  3  8  0  0  4  2 11  2  1  0  0  2  0  1  0  0  8  9  2  0 
+    5   63   1  0  0  0  5  0  1  2  3  1  0  2  6  0  0  4  4  4  9  2  0  5  4  7  2  1 
+    6   63   0  1  0  7  2  5  2  6  5  1  2  4  0  0  2  2  4  9  0  0  5  1  4  1  0  0 
+    7   63   4  1  0  3  1  8  0  1  0  4  5  7  1  1  0  0  1  0  5  3  3  2  9  2  1  1 
+    8   63   4  6  0  0  6  0  0  4  3  0  2  3  8  2  1  0  0  1  0  4  0  1  3 12  1  2 
+    9   63   6  2  3  4 11  2  1  4  2  0  0  4  0  4  2  1  0  2  3  8  2  0  1  0  1  0 
+   10   63   6  1  0  0  4  0  5  5  2  0  4  7  6  1  2  2  0  0  0  5  1  1  1  5  2  3 
+   11   63   0  0  0  0  5  0  1  5 12  0  0  4  5  0  0  4  0  4  8  1  0  2  2  8  2  0 
+   12   63   3  0  0  2  0  8  7  4  0  2  5  5  1  0  3  0  0  0  3  1  1  3 12  1  0  2 
+
+RECOVERED KEY
+UNITEDSTATES
+
+RECOVERED PLAINTEXT
+WETHEREFORETHEREPRESENTATIVESOFTHEUNITEDSTATESOFAMERICAINGENERALCONGRESSASSEMBLEDAPPEALINGTOTHESUPREMEJUDGEOFTHEWORLDFORTHERECTITUDEOFOURINTENTIONSDOINTHENAMEANDBYAUTHORITYOFTHEGOODPEOPLEOFTHESECOLONIESSOLEMNLYPUBLISHANDDECLARETHATTHESEUNITEDCOLONIESAREANDOFRIGHTOUGHTTOBEFREEANDINDEPENDENTSTATESTHATTHEYAREABSOLVEDFROMALLALLEGIANCETOTHEBRITISHCROWNANDTHATALLPOLITICALCONNECTIONBETWEENTHEMANDTHESTATEOFGREATBRITAINISANDOUGHTTOBETOTALLYDISSOLVEDANDTHATASFREEANDINDEPENDENTSTATESTHEYHAVEFULLPOWERTOLEVYWARCONCLUDEPEACECONTRACTALLIANCESESTABLISHCOMMERCEANDTODOALLOTHERACTSANDTHINGSWHICHINDEPENDENTSTATESMAYOFRIGHTDOANDFORTHESUPPORTOFTHISDECLARATIONWITHAFIRMRELIANCEONTHEPROTECTIONOFDIVINEPROVIDENCEWEMUTUALLYPLEDGETOEACHOTHEROURLIVESOURFORTUNESANDOURSACREDHONOR
+
+VERIFICATION
+Re-encrypted ciphertext matches original: YES
