@@ -118,6 +118,94 @@ double calculate_ic(const string& text) {
            (static_cast<double>(text.size()) * (text.size() - 1));
 }
 
+vector<string> split_into_groups(const string& text, int key_len) {
+    vector<string> groups(key_len);
+    for (size_t i = 0; i < text.size(); ++i)
+        groups[i % key_len] += text[i];
+    return groups;
+}
+
+
+vector<array<int, 26>> frequency_analysis(const vector<string>& groups) {
+    vector<array<int, 26>> table(groups.size());
+    for (size_t g = 0; g < groups.size(); ++g) {
+        table[g].fill(0);
+        for (char c : groups[g]) ++table[g][c - 'A'];
+    }
+    return table;
+}
+
+
+int find_shift(const array<int, 26>& counts) {
+    static const double english[26] = {
+        0.08167, 0.01492, 0.02782, 0.04253, 0.12702, 0.02228,
+        0.02015, 0.06094, 0.06966, 0.00153, 0.00772, 0.04025,
+        0.02406, 0.06749, 0.07507, 0.01929, 0.00095, 0.05987,
+        0.06327, 0.09056, 0.02758, 0.00978, 0.02360, 0.00150,
+        0.01974, 0.00074
+    };
+
+    int n = accumulate(counts.begin(), counts.end(), 0);
+    int best_shift = 0;
+    double best_chi = 1e100;
+
+    for (int shift = 0; shift < 26; ++shift) {
+        double chi = 0.0;
+        for (int plain = 0; plain < 26; ++plain) {
+            int cipher_index = (plain + shift) % 26;
+            double expected = n * english[plain];
+            if (expected > 0) {
+                double diff = counts[cipher_index] - expected;
+                chi += diff * diff / expected;
+            }
+        }
+        if (chi < best_chi) {
+            best_chi = chi;
+            best_shift = shift;
+        }
+    }
+    return best_shift;
+}
+
+
+string find_key(const vector<array<int, 26>>& freq_table) {
+    string key;
+    for (const auto& counts : freq_table)
+        key += static_cast<char>('A' + find_shift(counts));
+    return key;
+}
+
+
+string vigenere_decrypt(const string& ciphertext, const string& key) {
+    string plaintext;
+    plaintext.reserve(ciphertext.size());
+
+    for (size_t i = 0; i < ciphertext.size(); ++i) {
+        int c = ciphertext[i] - 'A';
+        int k = key[i % key.size()] - 'A';
+        plaintext += static_cast<char>('A' + (c - k + 26) % 26);
+    }
+    return plaintext;
+}
+
+
+string vigenere_encrypt(const string& plaintext, const string& key) {
+    string ciphertext;
+    ciphertext.reserve(plaintext.size());
+
+    for (size_t i = 0; i < plaintext.size(); ++i) {
+        int p = plaintext[i] - 'A';
+        int k = key[i % key.size()] - 'A';
+        ciphertext += static_cast<char>('A' + (p + k) % 26);
+    }
+    return ciphertext;
+}
+
+
+bool verify(const string& original, const string& reencrypted) {
+    return original == reencrypted;
+}
+
 int main(){
 
 	return 0;
