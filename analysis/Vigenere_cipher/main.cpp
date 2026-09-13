@@ -207,6 +207,88 @@ bool verify(const string& original, const string& reencrypted) {
 }
 
 int main(){
+const string INPUT_FILE = "../datasets/ciphertext.txt";
+    const string OUTPUT_FILE = "../outputs/output.txt";
+    const int GROUP_NUMBER = 11;
 
+    ifstream fin(INPUT_FILE);
+    if (!fin)
+    {
+        cerr << "Error: cannot open " << INPUT_FILE << "\n";
+        return 1;
+    }
+
+    string raw((istreambuf_iterator<char>(fin)), istreambuf_iterator<char>());
+    fin.close();
+
+    string ciphertext = clean_ciphertext(raw);
+    if (ciphertext.empty())
+    {
+        cerr << "Error: ciphertext is empty.\n";
+        return 1;
+    }
+
+    ofstream out(OUTPUT_FILE);
+    if (!out)
+    {
+        cerr << "Error: cannot create " << OUTPUT_FILE << "\n";
+        return 1;
+    }
+
+    out << "VIGENERE CRYPTANALYSIS - KASISKI EXAMINATION + FREQUENCY ANALYSIS\n";
+    out << "Group Number: " << GROUP_NUMBER << "\n";
+    out << "Ciphertext length after preprocessing: " << ciphertext.size() << "\n\n";
+
+    int key_length = kasiski_analysis(ciphertext, out);
+
+    auto groups = split_into_groups(ciphertext, key_length);
+    auto freq_table = frequency_analysis(groups);
+    string key = find_key(freq_table);
+
+    out << "\nINDEX OF COINCIDENCE\n";
+    out << fixed << setprecision(5);
+    out << "Whole ciphertext IC: " << calculate_ic(ciphertext) << "\n";
+    out << "Average IC for key length " << key_length << ": ";
+    double avg_ic = 0.0;
+    for (const auto &group : groups)
+        avg_ic += calculate_ic(group);
+    avg_ic /= groups.size();
+    out << avg_ic << "\n";
+
+    out << "\nFREQUENCY TABLES FOR EACH GROUP\n";
+    out << "Group  Size  ";
+    for (char c = 'A'; c <= 'Z'; ++c)
+        out << c << " ";
+    out << "\n";
+
+    for (size_t i = 0; i < groups.size(); ++i)
+    {
+        out << setw(5) << i + 1 << " " << setw(4) << groups[i].size() << "  ";
+        for (int x : freq_table[i])
+            out << setw(2) << x << " ";
+        out << "\n";
+    }
+
+    out << "\nRECOVERED KEY\n";
+    out << key << "\n";
+
+    string plaintext = vigenere_decrypt(ciphertext, key);
+    string reencrypted = vigenere_encrypt(plaintext, key);
+
+    out << "\nRECOVERED PLAINTEXT\n";
+    out << plaintext << "\n";
+
+    out << "\nVERIFICATION\n";
+    out << "Re-encrypted ciphertext matches original: "
+        << (verify(ciphertext, reencrypted) ? "YES" : "NO") << "\n";
+
+    out.close();
+
+    cout << "Done.\n";
+    cout << "Input : " << INPUT_FILE << "\n";
+    cout << "Output: " << OUTPUT_FILE << "\n";
+    cout << "Estimated key length: " << key_length << "\n";
+    cout << "Recovered key: " << key << "\n";
+    cout << "Verification: " << (verify(ciphertext, reencrypted) ? "PASSED" : "FAILED") << "\n";
 	return 0;
 }
